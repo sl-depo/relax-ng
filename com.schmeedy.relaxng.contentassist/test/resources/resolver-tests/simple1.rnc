@@ -1,0 +1,25 @@
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace ns  = "testns1"
+
+# A simple comment
+## Root element doc
+element ns:root {
+	## First element doc 
+    element ns:first {
+    	## first1 element doc
+    	## first1 element second line doc
+        element ns:first1 { text },
+        ## first2 element doc
+        element ns:first2 { text },
+        ## first3 element doc
+        element ns:first3 { text },
+        ## first4 element doc
+        element ns:first4 { text },
+        ## first5 element doc
+        element ns:first5 { text }
+    } &
+    ## Second element
+    element ns:second { text }+ &
+    ## Third element
+    element ns:third { text }*
+}

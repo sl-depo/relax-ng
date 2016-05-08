@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="file:/C:/dev/eclipse/ganymede/workspaces/relaxed-eclipse/cz.vse.xschm34.eclipse.relaxng.context/src/test/resources/resolver-tests/generatorConfiguration.rnc" type="compact"?>
+<configuration xmlns="ns" intVal="4">
+    <users>
+        <quantity>5</quantity>
+        <full-name><live-text>User [:DUMMY-1|word:] [:SEQ-user:]</live-text></full-name>
+        <login><live-text>user[:SEQ-user:]</live-text></login>
+        <password><live-text>user[:SEQ-user:]</live-text></password>
+        <email><live-text>[:DUMMY-1|word:]@example.org</live-text></email>
+        <description>Automatically generated user.</description>
+        <roles>
+            <role>admin</role>
+            <role>developer</role>
+            <role>user</role>
+        </roles>
+    </users>
+    
+    <project-grouping>
+        <type-distribution>
+            <distribution type="soft-discrete-distribution">
+                <ratio value="1-level" weight="2000"/>
+                <ratio value="2-level" weight="2"/>
+                <ratio value="3-level" weight="2"/>
+            </distribution>
+        </type-distribution>
+        <group-pattern id="1-level">
+            <live-text>rootgroup</live-text>
+        </group-pattern>
+        <group-pattern id="2-level">
+            <live-text>rootgroup/subgroup[:RAND-1..2:]</live-text>
+        </group-pattern>
+        <group-pattern id="3-level">
+            <live-text>rootgroup/subgroup[:RAND-1..2:]/leafgroup[:RAND-1..2:]</live-text>
+        </group-pattern>
+    </project-grouping>
+    
+    <project-type name="Small project">
+        <id><live-text>sproject[:SEQ-project:]</live-text></id>
+        <quantity>3</quantity>
+        <template>
+            <id>tracker</id>
+            <properties>
+                <property name="tracker_prefix">
+                    <live-text>SP[:SEQ-project:]</live-text>
+                </property>
+                <property name="project_name">
+                    <live-text>Small Project [:SEQ-project:]</live-text>
+                </property>
+                <property name="description">
+                    <live-text>Start [:DUMMY-15|words:] no.[:SEQ-project:] End</live-text>
+                </property>
+            </properties>
+        </template>
+        <work-items>            
+            <quantity-distribution>
+                <distribution type="linear-discrete-distribution" lowerBound="20" upperBound="30"/>
+            </quantity-distribution>
+            <type-distribution link="defaultWITypeDistribution"/>
+            <obligatory-fields>
+                <field id="title"><live-text>[:DUMMY-7|words:]</live-text></field>
+                <field id="description"><live-text>[:DUMMY-1..3|paragraphs:]</live-text></field>
+                <field id="severity" link="defaultSeverityDistribution"/>
+                <field id="priority" link="defaultPriorityDistribution"/>
+                <custom-field wiType="defect" id="occuredInBuild"><live-text>mockbuild-b[:RAND-10000..1000000:]</live-text></custom-field>                
+            </obligatory-fields>
+            <optional-fields>                
+                <quantity-distribution link="wiOptionalFieldQuantityDistribution"></quantity-distribution>
+                <type-distribution link="wiOptionalFieldTypeDistribution"/>
+                <field id="assignee"><distribution type="linear-discrete-distribution" lowerBound="1" upperBound="3"/></field>
+                <field id="category"><live-text>[:RAND-1..3:]</live-text></field>
+                <field id="initial-estimate"><live-text>[:RAND-1..6:]</live-text></field>
+                <field id="time-point"/>
+                <custom-field id="risk" link="customFieldRiskEnumDistribution"/>
+                <custom-field wiType="defect" id="unittest"><live-text>mocktest-t[:RAND-10000..1000000:]</live-text></custom-field>
+            </optional-fields>
+            <links>
+                <random-links>
+                    <quantity-distribution link="initialWiLocalLinksQuantityDistribution"/>
+                    <type-distribution link="initialWiLocalLinksTypeDistribution"/>
+                </random-links>
+                <tree-links>
+                    <type-distribution link="initialWiLocalLinksTypeDistribution"/>
+                    <childs-per-node>
+                        <quantity-distribution>0</quantity-distribution>
+                    </childs-per-node> 
+                    <tree-depth>1</tree-depth>
+                </tree-links>
+            </links>
+            <life-cycle>
+                <modifications>
+                    <quantity-distribution>
+                        <distribution type="normal-discrete-distribution" mean="4" standardDeviation="2"/>                        
+                    </quantity-distribution>
+                    <modify-fields>
+                        <quantity-distribution>
+                            <distribution type="linear-discrete-distribution" lowerBound="1" upperBound="5"/>
+                        </quantity-distribution>
+                        <type-distribution>
+                            <distribution type="soft-discrete-distribution">
+                                <ratio value="description" weight="15"/>
+                                <ratio value="assignee" weight="10"/>
+                                <ratio value="category" weight="3"/>
+                                <ratio value="time-point" weight="5"/>
+                                <ratio value="severity" weight="10"/>
+                                <ratio value="risk" weight="10"/>
+                                <ratio value="time-spent" weight="10"/>
+                                <ratio value="comment" weight="20"/>
+                                <ratio value="work-record" weight="10"/>
+                            </distribution>
+                        </type-distribution>
+                        <field id="time-spent"><live-text>[:RAND-1..6:]</live-text></field>
+                        <field id="comment"><live-text>[:DUMMY-1|paragraph:]</live-text></field>
+                        <field id="work-record"><live-text>[:RAND-1..6:]</live-text></field>
+                        <field id="resolution">
+                            <distribution type="soft-discrete-distribution">
+                                <ratio value="fixed" weight="20"/>
+                                <ratio value="wontfix" weight="1"/>
+                                <ratio value="duplicate" weight="3"/>
+                                <ratio value="incomplete" weight="1"/>
+                                <ratio value="cannotreproduce" weight="2"/>
+                                <ratio value="invalid" weight="2"/>
+                                <ratio value="later" weight="3"/>
+                            </distribution>
+                        </field>
+                    </modify-fields>
+                </modifications>
+                <workflow-scenarios>
+                    <type-distribution>
+                        <distribution type="soft-discrete-distribution">
+                            <ratio value="empty" weight="3"/>
+                            <ratio value="normal" weight="6"/>
+                            <ratio value="sc1" weight="2"/>
+                            <ratio value="sc2" weight="3"/>
+                            <ratio value="sc3" weight="1"/>
+                        </distribution>
+                    </type-distribution>
+                    <workflow id="test">
+                        <action>resolve_and_close</action>
+                    </workflow>
+                    <workflow id="empty"/>
+                    <workflow id="normal">
+                        <action>accept</action>
+                        <action>start_progress</action>
+                        <action>resolve</action>
+                        <action>close</action>
+                    </workflow>                    
+                    <workflow id="sc1">
+                        <action>start_progress</action>
+                        <action>resolve_and_close</action>
+                        <action>reopen</action>
+                        <action>resolve</action>
+                        <action>close</action>
+                    </workflow>
+                    <workflow id="sc2">
+                        <action>accept</action>
+                        <action>start_progress</action>
+                        <action>resolve</action>
+                    </workflow>
+                    <workflow id="sc3">
+                        <action>accept</action>
+                        <action>resolve_and_close</action>
+                        <action>reopen</action>
+                    </workflow>
+                </workflow-scenarios>
+            </life-cycle>
+        </work-items>
+        <users>
+            <quantity>5</quantity>
+            <roles>
+                <role>project_user</role>
+                <role>project_assignable</role>
+                <role>project_developer</role>
+            </roles>
+        </users>
+        <categories>
+            <quantity>5</quantity>
+            <name><live-text>Category [:SEQ-category:]</live-text></name>
+        </categories>
+        <time-points>
+            <quantity>5</quantity>
+            <id><live-text>i0[:SEQ-timepoint:]</live-text></id>
+            <name><live-text>Time Point [:SEQ-timepoint:]</live-text></name>
+            <date><live-text>[:RELDATE-xd|30..180:]</live-text></date>
+        </time-points>
+    </project-type>
+    
+    <global-distributions>
+        <distribution id="defaultWITypeDistribution" type="soft-discrete-distribution">
+            <ratio value="defect" weight="5"/>
+            <ratio value="requirement" weight="4"/>
+            <ratio value="task" weight="7"/>
+            <ratio value="tip-improvement" weight="1"/>
+            <ratio value="tip-feature" weight="1"/>
+        </distribution>
+        
+        <distribution id="defaultSeverityDistribution" type="soft-discrete-distribution">
+            <ratio value="trivial" weight="1"/>
+            <ratio value="minor" weight="4"/>
+            <ratio value="normal" weight="10"/>
+            <ratio value="major" weight="9"/>
+            <ratio value="critical" weight="6"/>
+            <ratio value="blocker" weight="2"/>
+        </distribution>
+        
+        <distribution id="defaultPriorityDistribution" type="soft-discrete-distribution">
+            <ratio value="16" weight="1"/>
+            <ratio value="20" weight="2"/>
+            <ratio value="25" weight="20"/>
+            <ratio value="33" weight="2"/>
+            <ratio value="50" weight="1"/>
+        </distribution>
+        
+        <distribution id="wiOptionalFieldTypeDistribution" type="soft-discrete-distribution">
+            <ratio value="assignee" weight="40"/>
+            <ratio value="category" weight="15"/>
+            <ratio value="initial-estimate" weight="10"/>
+            <ratio value="time-point" weight="5"/>
+            <ratio value="risk" weight="20"/>
+            <ratio value="unittest" weight="20"/>
+        </distribution>
+        
+        <distribution id="wiOptionalFieldQuantityDistribution" type="soft-discrete-distribution">
+            <ratio value="0" weight="10"/>
+            <ratio value="1" weight="20"/>
+            <ratio value="2" weight="10"/>
+            <ratio value="3" weight="6"/>
+            <ratio value="4" weight="3"/>
+        </distribution>
+        
+        <distribution id="initialWiLocalLinksQuantityDistribution" type="soft-discrete-distribution">
+            <ratio value="0" weight="20"/>
+            <ratio value="1" weight="4"/>
+            <ratio value="2" weight="1"/>
+        </distribution>
+        
+        <distribution id="initialWiLocalLinksTypeDistribution" type="soft-discrete-distribution">
+            <ratio value="relates_to" weight="20"/>
+            <ratio value="depends_on" weight="4"/>
+            <ratio value="has_parent" weight="1"/>
+        </distribution>
+    
+        <distribution id="customFieldRiskEnumDistribution" type="soft-discrete-distribution">
+            <ratio value="low" weight="1"/>
+            <ratio value="moderate" weight="2"/>
+            <ratio value="high" weight="1"/>
+        </distribution>
+    </global-distributions>
+</configuration>

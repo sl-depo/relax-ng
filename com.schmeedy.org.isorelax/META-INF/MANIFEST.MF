@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ISO RELAX APIs
+Bundle-SymbolicName: com.schmeedy.org.isorelax
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Export-Package: jp.gr.xml.relax.dom;version="1.0.0";uses:="org.w3c.dom",
+ jp.gr.xml.relax.sax;version="1.0.0";
+  uses:="org.xml.sax.ext,
+   jp.gr.xml.relax.dom,
+   org.w3c.dom,
+   org.xml.sax",
+ jp.gr.xml.relax.xml;version="1.0.0",
+ org.iso_relax.ant;version="1.0.0";uses:="org.apache.tools.ant.types,org.apache.tools.ant,org.xml.sax",
+ org.iso_relax.catalog;version="1.0.0";uses:="org.xml.sax.helpers,org.xml.sax",
+ org.iso_relax.dispatcher;version="1.0.0";uses:="org.xml.sax",
+ org.iso_relax.dispatcher.impl;version="1.0.0";uses:="org.iso_relax.dispatcher,org.xml.sax.helpers,org.xml.sax",
+ org.iso_relax.jaxp;version="1.0.0";
+  uses:="org.iso_relax.verifier,
+   javax.xml.parsers,
+   org.w3c.dom,
+   org.xml.sax.helpers,
+   org.xml.sax",
+ org.iso_relax.verifier;version="1.0.0";uses:="org.w3c.dom,org.xml.sax",
+ org.iso_relax.verifier.impl;version="1.0.0";
+  uses:="org.xml.sax.ext,
+   org.iso_relax.verifier,
+   jp.gr.xml.relax.dom,
+   org.w3c.dom,
+   org.xml.sax.helpers,
+   org.xml.sax"
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-Vendor: schmeedy.com, based on the 2004-11-11 version of iso-relax project hosted on sourceforge.net

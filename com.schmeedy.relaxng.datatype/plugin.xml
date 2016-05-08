@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <extension-point id="datatypeLibrary" name="RELAX NG Datatype Library" schema="schema/com.schmeedy.relaxng.datatype.datatypeLibrary.exsd"/>
+</plugin>

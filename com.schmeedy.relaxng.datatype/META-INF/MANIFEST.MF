@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RELAX NG Pluggable Datatype Implementation
+Bundle-SymbolicName: com.schmeedy.relaxng.datatype;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: schmeedy.com
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.apache.xerces.impl.xpath.regex
+Export-Package: org.relaxng.datatype;version="1.0.0",
+ org.relaxng.datatype.helpers;version="1.0.0"
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)";resolution:=optional

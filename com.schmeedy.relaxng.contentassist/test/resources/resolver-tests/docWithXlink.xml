@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="file:/C:/dev/eclipse/ganymede/workspaces/relaxed-eclipse/cz.vse.xschm34.eclipse.relaxng.context/src/test/resources/resolver-tests/docWithXlink.rnc" type="compact"?>
+<root xmlns="testNamespace" xmlns:xl="http://www.w3.org/1999/xlink">    
+    <para>
+        Bla bla bla
+        <link xl:href="http://seznam.cz">seznam.cz<linkParam>paramValue</linkParam></link>
+        Bla bla
+    </para>
+</root>

@@ -1,0 +1,16 @@
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace tns = "testNamespace"
+namespace xlink = "http://www.w3.org/1999/xlink"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+element tns:root { 
+    element tns:para {
+        element tns:link {
+            attribute xlink:href { xsd:anyURI } &
+            text &
+            element tns:linkParam { text }*
+        }* &
+        element tns:note { text }* &
+        text
+    }
+}

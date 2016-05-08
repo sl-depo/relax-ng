@@ -1,0 +1,176 @@
+namespace dg = "ns"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+start = 
+    element dg:configuration { 
+        attribute intVal { xsd:int } &
+        element dg:users {
+            element dg:quantity { optional-live-text } &
+            element dg:full-name { live-text } &
+            element dg:login { live-text } &
+            element dg:password { optional-live-text } &
+            element dg:email { optional-live-text } &
+            element dg:description { optional-live-text } &
+            element dg:roles {
+                element dg:role { text }+
+            }
+        } &
+        element dg:project-grouping {
+            type-distribution,
+            element dg:group-pattern {
+                attribute id { text },
+                live-text
+            }+
+        } &
+        element dg:project-type {
+            attribute name { text } &
+            element dg:id { live-text } &
+            element dg:quantity { optional-live-text } &
+            element dg:template {
+                element dg:id { text },
+                element dg:properties {
+                    element dg:property { 
+                        attribute name { text },
+                        optional-live-text
+                    }+
+                }?
+            } &
+            element dg:work-items {
+                quantity-distribution &
+                type-distribution &
+                element dg:obligatory-fields {
+                    fields-definition
+                } &
+                element dg:optional-fields {
+                    quantity-distribution &
+                    type-distribution &
+                    fields-definition
+                }? &
+                element dg:links {
+                    element dg:tree-links {
+                        type-distribution &
+                        element dg:childs-per-node {
+                            quantity-distribution                        
+                        } &                    
+                        element dg:tree-depth {
+                            optional-live-text
+                        }
+                    } &
+                    element dg:random-links {
+                        type-distribution &
+                        quantity-distribution
+                    }
+                } &
+                element dg:life-cycle {
+                    element dg:modifications {
+                        quantity-distribution & 
+                        element dg:modify-fields {
+                            quantity-distribution &
+                            type-distribution &
+                            fields-definition?
+                        }
+                    } &
+                    element dg:workflow-scenarios {
+                        type-distribution &
+                        element dg:workflow {
+                            attribute id { text },
+                            element dg:action { text }*
+                        }+
+                    }
+                }            
+            } &
+            element dg:users {
+                element dg:quantity { text } &
+                element dg:roles {
+                    element dg:role { text }+
+                }
+            } &
+            element dg:categories {
+                element dg:quantity { text } &
+                element dg:name { live-text }
+            } &
+            element dg:time-points {
+                element dg:quantity { text } &
+                element dg:id { live-text } &
+                element dg:name { optional-live-text } &
+                element dg:date { live-text }
+            }
+        }+ &
+        element dg:global-distributions {
+            named-distribution+      
+        }?        
+    }
+
+quantity-distribution =
+    element dg:quantity-distribution { optional-distribution }
+
+type-distribution = 
+    element dg:type-distribution { 
+        attribute link { text } |
+        element dg:distribution {            
+            soft-discrete-distribution
+        }
+    }
+
+live-text =
+    element dg:live-text { text }
+
+optional-live-text = 
+    text | live-text
+    
+distribution = 
+    attribute link { text } |
+    element dg:distribution {
+        linear-discrete-distribution |
+        normal-discrete-distribution |
+        soft-discrete-distribution
+    }
+    
+optional-distribution = 
+    text | distribution
+
+named-distribution = 
+    element dg:distribution {
+        attribute id { text },
+        (linear-discrete-distribution |
+        normal-discrete-distribution |
+        soft-discrete-distribution)
+    }    
+    
+linear-discrete-distribution = 
+    attribute type { "linear-discrete-distribution" },    
+    attribute lowerBound { text },
+    attribute upperBound { text }
+       
+normal-discrete-distribution =
+    attribute type { "normal-discrete-distribution" },
+    attribute mean { text },
+    attribute standardDeviation { text }    
+    
+soft-discrete-distribution = 
+    attribute type { "soft-discrete-distribution" },
+    element dg:ratio {
+        attribute value { text },
+        attribute weight { text }
+    }+
+    
+fields-definition = 
+    element dg:field {
+        field-definition-content
+    }+, 
+    element dg:custom-field {
+        attribute wiType { text }?,
+        field-definition-content
+    }*
+    
+field-definition-content =
+    attribute id { text },
+    (field-param-content |
+     element dg:param {
+         attribute name { text },
+         field-param-content
+     }+)
+    
+field-param-content = 
+    (optional-live-text | distribution)

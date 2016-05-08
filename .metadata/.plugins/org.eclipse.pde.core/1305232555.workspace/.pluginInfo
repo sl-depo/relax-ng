@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="491" localization="OSGI-INF/l10n/bundle" name="RELAX NG Pluggable Datatype Implementation" project="com.schmeedy.relaxng.datatype" provider="schmeedy.com"/>
+	<bundle bundleID="492" class="com.schmeedy.relaxng.eclipse.core.internal.RngCorePlugin" localization="OSGI-INF/l10n/bundle" name="RELAX NG WST integration core" project="com.schmeedy.relaxng.eclipse.core" provider="schmeedy.com"/>
+	<bundle bundleID="489" localization="OSGI-INF/l10n/bundle" name="RELAX NG Object Model" project="com.schmeedy.org.kohsuke.rngom" provider="schmeedy.com, based on the 20051226 build of rngom by Kohsuke Kawaguchi"/>
+	<bundle bundleID="490" localization="OSGI-INF/l10n/bundle" name="RelaxNG Context Resolution Plug-in" project="com.schmeedy.relaxng.contentassist"/>
+	<bundle bundleID="493" class="com.schmeedy.relaxng.eclipse.ui.internal.RngUiPlugin" localization="OSGI-INF/l10n/bundle" name="RELAX NG WST integration" project="com.schmeedy.relaxng.eclipse.ui" provider="schmeedy.com"/>
+	<bundle bundleID="488" localization="OSGI-INF/l10n/bundle" name="ISO RELAX APIs" project="com.schmeedy.org.isorelax" provider="schmeedy.com, based on the 2004-11-11 version of iso-relax project hosted on sourceforge.net">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="487" localization="OSGI-INF/l10n/bundle" name="Jing RELAX NG Validator" project="com.schmeedy.com.thaiopensource.relaxng.jing" provider="schmeedy.com, based on the 20081028 version of Jing validator by James Clark"/>
+</map>

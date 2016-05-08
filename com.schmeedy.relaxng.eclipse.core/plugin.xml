@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<extension-point id="schemaBinding" name="RELAX NG Schema Binding" schema="schema/com.schmeedy.relaxng.eclipse.core.schemaBinding.exsd"/>
+	<extension
+         point="org.eclipse.core.contenttype.contentTypes">
+   		 <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            default-charset="UTF-8"
+            describer="com.schmeedy.relaxng.eclipse.core.internal.contenttype.RngDocumentContentDescriber"
+            id="com.schmeedy.relaxng.eclipse.core.relaxngDocument"
+            name="RELAX NG Document"
+            priority="normal"/>
+      <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            default-charset="UTF-8"
+            id="com.schmeedy.relaxng.eclipse.core.relaxngSchema"
+            name="RELAX NG Schema in XML Syntax"
+            priority="normal">
+         <describer
+               class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber2">
+            <parameter
+                  name="element"
+                  value="{http://relaxng.org/ns/structure/1.0}*">
+            </parameter>
+         </describer>
+      </content-type>
+      <content-type
+            default-charset="UTF-8"
+            id="com.schmeedy.relaxng.eclipse.core.relaxngSchemaCompact"
+            name="RELAX NG Schema in Compact Syntax"
+            priority="normal">
+      </content-type>
+      <file-association
+            content-type="relaxngSchemaCompact"
+            file-extensions="rnc">
+      </file-association>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="com.schmeedy.relaxng.eclipse.core.relaxngDocument.definition">
+         <iterate
+               ifEmpty="false">
+            <adapt
+                  type="org.eclipse.core.resources.IFile">
+               <test
+                     property="org.eclipse.core.resources.contentTypeId"
+                     value="com.schmeedy.relaxng.eclipse.core.relaxngDocument">
+               </test>
+            </adapt>
+         </iterate>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.wst.sse.ui.sourcevalidation">
+      <validator
+            class="com.schmeedy.relaxng.eclipse.core.internal.validator.DelegatingSourceValidatorForRngDocuments"
+            id="jing"
+            scope="total">
+         <contentTypeIdentifier
+               id="com.schmeedy.relaxng.eclipse.core.relaxngDocument">
+         	<partitionType id="org.eclipse.wst.xml.XML_DEFAULT"/>
+         </contentTypeIdentifier>
+      </validator>
+   </extension>
+   <extension
+         point="com.schmeedy.relaxng.eclipse.core.schemaBinding">
+      <schema-binding
+            namespace="http://docbook.org/ns/docbook"
+            schema-syntax="COMPACT"
+            schema-uri="relax-schemas/docbook5.rnc">
+      </schema-binding>
+      <schema-binding
+            namespace="http://relaxng.org/ns/structure/1.0"
+            schema-syntax="XML"
+            schema-uri="relax-schemas/relaxng.rng">
+      </schema-binding>
+      <schema-binding
+            namespace="http://www.w3.org/1999/XSL/Transform"
+            schema-syntax="XML"
+            schema-uri="relax-schemas/xslt.rng">
+      </schema-binding>
+      <schema-binding
+            namespace="http://www.w3.org/2001/XMLSchema"
+            schema-syntax="XML"
+            schema-uri="relax-schemas/xmlschema.rng">
+      </schema-binding>
+   </extension>
+</plugin>

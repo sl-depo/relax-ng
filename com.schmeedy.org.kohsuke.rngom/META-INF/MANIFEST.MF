@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RELAX NG Object Model
+Bundle-SymbolicName: com.schmeedy.org.kohsuke.rngom
+Bundle-Version: 1.4.1
+Export-Package: org.kohsuke.rngom.ast.builder;version="1.4.1",
+ org.kohsuke.rngom.ast.om;version="1.4.1",
+ org.kohsuke.rngom.ast.util;version="1.4.1",
+ org.kohsuke.rngom.binary;version="1.4.1",
+ org.kohsuke.rngom.binary.helper;version="1.4.1",
+ org.kohsuke.rngom.binary.visitor;version="1.4.1",
+ org.kohsuke.rngom.digested;version="1.4.1",
+ org.kohsuke.rngom.dt;version="1.4.1",
+ org.kohsuke.rngom.dt.builtin;version="1.4.1",
+ org.kohsuke.rngom.nc;version="1.4.1",
+ org.kohsuke.rngom.parse;version="1.4.1",
+ org.kohsuke.rngom.parse.compact;version="1.4.1",
+ org.kohsuke.rngom.parse.host;version="1.4.1",
+ org.kohsuke.rngom.parse.xml;version="1.4.1",
+ org.kohsuke.rngom.util;version="1.4.1",
+ org.kohsuke.rngom.xml.sax;version="1.4.1",
+ org.kohsuke.rngom.xml.util;version="1.4.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.relaxng.datatype;version="[1.0.0,2.0.0)",
+ org.relaxng.datatype.helpers;version="[1.0.0,2.0.0)"
+Bundle-Vendor: schmeedy.com, based on the 20051226 build of rngom by Kohsuke Kawaguchi

@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RELAX NG WST integration core
+Bundle-SymbolicName: com.schmeedy.relaxng.eclipse.core;singleton:=true
+Bundle-Version: 0.5.0
+Bundle-Vendor: schmeedy.com
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: com.schmeedy.relaxng.contentassist;version="[0.5.0,1.0.0)",
+ com.thaiopensource.relaxng.impl;version="[1.1.1,2.0.0)",
+ com.thaiopensource.util;version="[1.1.1,2.0.0)",
+ com.thaiopensource.validate;version="[1.1.1,2.0.0)",
+ com.thaiopensource.validate.rng;version="[1.1.1,2.0.0)",
+ org.eclipse.core.filesystem,
+ org.eclipse.core.filesystem.provider,
+ org.eclipse.core.resources
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
+ org.eclipse.wst.xml.core;bundle-version="[1.1.400,1.2.0)",
+ org.eclipse.wst.validation;bundle-version="[1.2.102,1.3.0)",
+ org.eclipse.wst.xml.ui;bundle-version="[1.1.0,1.2.0)"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.schmeedy.relaxng.eclipse.core.internal.RngCorePlugin
+Export-Package: com.schmeedy.relaxng.eclipse.core;version="0.5.0",
+ com.schmeedy.relaxng.eclipse.core.internal;version="0.5.0";x-friends:="com.schmeedy.relaxng.eclipse.ui",
+ com.schmeedy.relaxng.eclipse.core.internal.binding;version="0.5.0";x-friends:="com.schmeedy.relaxng.eclipse.ui"
